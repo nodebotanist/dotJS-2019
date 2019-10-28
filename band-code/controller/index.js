@@ -1,4 +1,4 @@
-const Launchpad = require("launchpad-mk2")
+const Launchpad = require("./node-launchpad-mk2/src/index")
 const midi = require('midi')
 
 // get Midi port for novation pad
