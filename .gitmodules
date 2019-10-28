@@ -1,0 +1,3 @@
+[submodule "band-code/controller/node-launchpad-mk2"]
+	path = band-code/controller/node-launchpad-mk2
+	url = git@github.com:nodebotanist/node-launchpad-mk2.git
