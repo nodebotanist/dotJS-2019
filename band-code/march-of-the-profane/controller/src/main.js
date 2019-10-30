@@ -6,17 +6,17 @@ let synth = new Tone.Synth({
 
 document.querySelector('#start').addEventListener('click', () => {
 	Tone.context.resume();
-	Tone.Transport.bpm.value = 145 * 2
-	Tone.Transport.timeSignature = 6
+	Tone.Transport.bpm.value = 145 
+	Tone.Transport.timeSignature.value = [12, 8]
 	// create an array of notes to be played
-	const notes = ["A#1", [null], null, null, null, [null, "C2"], "B#1", [[null]], "B1", "B1", null, null, null, [null, "B1"],null, [null, "B1"] ];
+	const notes = ["A#1", [null], null, null, null, [null, "C1"], "B#1", [[null]], "B1", "B1", null, null, null, [null, "B1"],null, [null, "B1"] ];
 	// create a new sequence with the synth and notes
 	const synthPart = new Tone.Sequence(
 		function (time, note) {
 			synth.triggerAttackRelease(note, "10hz", time);
 		},
 		notes,
-		"4n"
+		"8n"
 	);
 	// Setup the synth to be ready to play on beat 1
 	synthPart.start();
