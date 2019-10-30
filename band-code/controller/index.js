@@ -11,4 +11,6 @@ myLaunchpad.on("release", button => {
 	console.log(button.note, button.x, button.y)
 })
 
-myLaunchpad.lightAll(3)
+myLaunchpad.buttons.forEach((button) => {
+	button.setColor(button.note)
+})
