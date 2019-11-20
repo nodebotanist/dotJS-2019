@@ -1,10 +1,30 @@
 const Tone = require('tone')
+
+console.log('creating socket')
+// create a websocket connection to Maestro
+const ws = new WebSocket('ws://localhost:8081')
+
+ws.addEventListener('open', () => {
+	ws.send('melodyConnected')
+})
+
+ws.addEventListener('message', (event) => {
+	console.log(`Recieved: ${event.data}`)
+	if(event.data === 'startPlaying'){
+		playSong()
+	}
+})
+
 //create a synth and connect it to the master output (your speakers)
 let synth = new Tone.Synth({
 	volume: 0
 }).toMaster();
 
 document.querySelector('#start').addEventListener('click', () => {
+	ws.send('startSong')
+})
+
+function playSong() {
 	Tone.context.resume();
 	Tone.Transport.bpm.value = 120 
 	Tone.Transport.timeSignature.value = 1
@@ -27,7 +47,7 @@ document.querySelector('#start').addEventListener('click', () => {
 	// Setup the synth to be ready to play on beat 1
 	synthPart.start();
 	Tone.Transport.start();
-})
+}
 
 function beginningMeasures() {
 	return [
