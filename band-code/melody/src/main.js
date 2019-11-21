@@ -20,6 +20,8 @@ let synth = new Tone.Synth({
 	volume: 0
 }).toMaster();
 
+let bassSynth = new Tone.Synth().toMaster()
+
 document.querySelector('#start').addEventListener('click', () => {
 	ws.send('startSong')
 })
@@ -44,10 +46,56 @@ function playSong() {
 		notes,
 		"4n"
 	);
+
+	const bassSynthPart = new Tone.Sequence(
+		function (time, note) {
+			bassSynth.triggerAttackRelease(note, "10hz", time);
+		},
+		bassNotes,
+		"4n"
+	);
+
 	// Setup the synth to be ready to play on beat 1
 	synthPart.start();
+	bassSynthPart.start();
 	Tone.Transport.start();
 }
+
+let bassNotes = [
+	"D2", null, "E1", null, // E10, E0
+	"B2", null, "B2", null, // E7, E7
+	"G2", null, "G2", null, // E4, E4
+	"G2", null, "F2", null, // E4, A8
+	"D2", null, "E1", null, // E10, E0
+	"B2", null, "B2", null, // E7, E7
+	"G2", null, "G2", null, // E4, E4
+	"G2", null, "F2", null, // E4, A8
+	"E3", null, "F#3", null, // D2, D4
+	"D3", null, "D3", null, // D0, D0
+	"C3", null, "D3", null, // D10, D0
+	"B3", null, "B3", null,// D9, D9
+	"E3", null, "F#3", null, // D2, D4
+	"D3", null, "D3", null, // D0, D0
+	"A3", null, "A3", null, // D7, D7
+	"A3", null, "E3", null, // D7, D4
+	"D2", null, "E1", null, // E10, E0
+	"B2", null, "B2", null, // E7, E7
+	"G2", null, "G2", null, // E4, E4
+	"G2", null, "F2", null, // E4, A8
+	"D2", null, "E1", null, // E10, E0
+	"B2", null, "B2", null, // E7, E7
+	"G2", null, "G2", null, // E4, E4
+	"G2", null, "F2", null, // E4, A8
+	"E3", null, "F#3", null, // D2, D4
+	"D3", null, "D3", null, // D0, D0
+	"C3", null, "D3", null, // D10, D0
+	"B3", null, "B3", null, // D9, D9
+	"E3", null, "F#3", null, // D2, D4
+	"D3", null, "D3", null, // D0, D0
+	"A3", null, "A3", null, // D7, D7
+	"A3", null, "E3", null, // D7, D4
+	"G4", null, null, null // G0
+]
 
 function beginningMeasures() {
 	return [
