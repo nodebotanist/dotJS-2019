@@ -14,6 +14,7 @@ for(let i = 0; i < portCount; i++) {
 
 let currentNote = null
 let messageTime
+let currentDelta
 
 // Configure a callback.
 input.on('message', (deltaTime, message) => {
@@ -21,20 +22,21 @@ input.on('message', (deltaTime, message) => {
   let note = tonal.Note.fromMidi(message[1])
   let negative = note.indexOf('-') !== -1
   let scale = Number.parseInt(note.charAt(note.length - 1), 10)
-  if(scale < 4 && scale >= 0 && deltaTime > 0.2  && !negative){
+  if(scale < 4 && scale >= 0 && !negative && deltaTime > 0.075){
     // console.log(`m: ${message} d: ${deltaTime}`)
     // console.log(`Note: ${note}`)
     currentNote = note
+    currentDelta = deltaTime
   }
 });
 
 setInterval(() => {
-  console.log(currentNote, messageTime)
+  console.log(currentNote, messageTime, currentDelta)
   if(Date.now() - messageTime >= 1000){
     currentNote = null
     messageTime = null
   }
-}, 100)
+}, 200)
 
 // Open the first available input port.
 input.openPort(0);
