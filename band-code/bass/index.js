@@ -18,9 +18,13 @@ input.on('message', (deltaTime, message) => {
   //   [status, data1, data2]
   // https://www.cs.cf.ac.uk/Dave/Multimedia/node158.html has some helpful
   // information interpreting the messages.
-  console.log(`m: ${message} d: ${deltaTime}`)
-  console.log(`Note: ${tonal.Note.fromMidi(message[1])}`)
+  let note = tonal.Note.fromMidi(message[1])
+  let scale = Number.parseInt(note.charAt(note.length - 1), 10)
+  if(scale < 4 && scale >= 0 && deltaTime > 0.5){
+    console.log(`m: ${message} d: ${deltaTime}`)
+    console.log(`Note: ${note}`)
+  }
 });
 
 // Open the first available input port.
-input.openPort(1);
+input.openPort(0);
