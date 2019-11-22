@@ -57,7 +57,7 @@ function playSong() {
 
 	// Setup the synth to be ready to play on beat 1
 	synthPart.start();
-	bassSynthPart.start();
+	//bassSynthPart.start();
 	Tone.Transport.start();
 }
 
