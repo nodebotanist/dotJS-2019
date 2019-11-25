@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "color": "^3.1.2",
     "midi": "^1.0.0",
     "tonal": "^2.2.2"
   }
