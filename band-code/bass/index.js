@@ -11,9 +11,15 @@ const portCount = input.getPortCount()
 // set up OPC connection for Fadecandy
 const opcClient = new OPC('localhost', 7890)
 
-// Get the name of a specified input port.
+// Find the port with i2M musicport in it-- that's the port we want
+let port
+
 for(let i = 0; i < portCount; i++) {
-  console.log(i, input.getPortName(i))
+  let portName = input.getPortName(i)
+  console.log(i, portName)
+  if (portName.indexOf('i2M musicport') !== -1) {
+    port = i
+  }
 }
 
 let currentNote = null
@@ -43,4 +49,4 @@ setInterval(() => {
 }, 200)
 
 // Open the first available input port.
-input.openPort(0);
+input.openPort(port);
