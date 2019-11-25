@@ -12,6 +12,9 @@ const portCount = input.getPortCount()
 
 // set up OPC connection for Fadecandy
 const opcClient = new OPC('localhost', 7890)
+// set the number of pixels
+const numPixels = 24 + 64 + 15
+opcClient.setPixelCount(numPixels)
 
 // Find the port with i2M musicport in it-- that's the port we want
 let port
@@ -23,6 +26,7 @@ for(let i = 0; i < portCount; i++) {
     port = i
   }
 }
+console.log(`Opening port: ${port}`)
 
 let currentNote = null
 let messageTime
@@ -65,6 +69,11 @@ function noteToHue(note) {
   console.log(multiplier)
   let hue = (256 / 8) * multiplier
   let currentColor = color({h: hue, s: 100, l:50})
+  console.log(currentColor.red(), currentColor.green(), currentColor.blue())
+  for(let i = 0; i < numPixels; i++) {
+    opcClient.setPixel(i, Math.round(currentColor.red()), Math.round(currentColor.green()), Math.round(currentColor.blue()))
+  }
+  opcClient.writePixels()
 }
 // Open the first available input port.
 input.openPort(port);
