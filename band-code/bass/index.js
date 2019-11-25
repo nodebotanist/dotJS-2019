@@ -57,6 +57,8 @@ setInterval(() => {
 setInterval(() => {
   if(currentNote) {
     noteToHue(currentNote)
+  } else {
+    clear()
   }
 }, 200)
 
@@ -68,10 +70,17 @@ function noteToHue(note) {
   }
   console.log(multiplier)
   let hue = (256 / 8) * multiplier
-  let currentColor = color({h: hue, s: 100, l:50})
+  let currentColor = color({h: hue, s: 100, l:25})
   console.log(currentColor.red(), currentColor.green(), currentColor.blue())
   for(let i = 0; i < numPixels; i++) {
     opcClient.setPixel(i, Math.round(currentColor.red()), Math.round(currentColor.green()), Math.round(currentColor.blue()))
+  }
+  opcClient.writePixels()
+}
+
+function clear() {
+  for (let i = 0; i < numPixels; i++) {
+    opcClient.setPixel(i, 0, 0, 0)
   }
   opcClient.writePixels()
 }
