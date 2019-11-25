@@ -1,11 +1,15 @@
-const midi = require('midi');
+const midi = require('midi')
 const tonal = require('tonal')
+const OPC = require('./opc')
 
 // Set up a new input.
 const input = new midi.Input();
 
 // Count the available input ports.
 const portCount = input.getPortCount()
+
+// set up OPC connection for Fadecandy
+const opcClient = new OPC('localhost', 7890)
 
 // Get the name of a specified input port.
 for(let i = 0; i < portCount; i++) {
