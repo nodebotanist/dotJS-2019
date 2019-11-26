@@ -80,7 +80,9 @@ function noteToHue(note) {
 
 function clear() {
   for (let i = 0; i < numPixels; i++) {
-    opcClient.setPixel(i, 0, 0, 0)
+    let hue = (256/numPixels) * i
+    let currentColor = color({h: hue, s: 100, v: 25})
+    opcClient.setPixel(i, currentColor.red(), currentColor.green(), currentColor.blue())
   }
   opcClient.writePixels()
 }
