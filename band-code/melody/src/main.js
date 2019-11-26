@@ -16,7 +16,7 @@ ws.addEventListener('message', (event) => {
 })
 
 //create a synth and connect it to the master output (your speakers)
-let synth = new Tone.Synth({
+let synth = new Tone.FMSynth({
 	volume: 0
 }).toMaster();
 
@@ -30,6 +30,8 @@ function playSong() {
 	Tone.context.resume();
 	Tone.Transport.bpm.value = 120 
 	Tone.Transport.timeSignature.value = 1
+
+
 	// create an array of notes to be played
 	const notes = beginningMeasures()
 		.concat(beginningMeasures())
@@ -46,6 +48,7 @@ function playSong() {
 		notes,
 		"4n"
 	);
+	synthPart.loop = false
 
 	const bassSynthPart = new Tone.Sequence(
 		function (time, note) {
@@ -54,6 +57,7 @@ function playSong() {
 		bassNotes,
 		"4n"
 	);
+	bassSynthPart.loop = false
 
 	// Setup the synth to be ready to play on beat 1
 	synthPart.start();
