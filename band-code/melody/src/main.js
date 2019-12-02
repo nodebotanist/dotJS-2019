@@ -22,6 +22,27 @@ let synth = new Tone.FMSynth({
 
 let bassSynth = new Tone.Synth().toMaster()
 
+var drumSynth = new Tone.MembraneSynth({
+	pitchDecay: 0.05,
+	octaves: 4,
+	oscillator: {
+		type: "fmsine",
+		phase: 140,
+		modulationType: "sine",
+		modulationIndex: 0.8,
+		partials: [1] //1,0.1,0.01,0.01
+	},
+	envelope: {
+		attack: 0.01,
+		decay: 0.74,
+		sustain: 0.71,
+		release: 0.05,
+		attackCurve: "exponential"
+	}
+}).toMaster()
+var gain = new Tone.Gain(0.5);
+drumSynth.chain(gain)
+
 document.querySelector('#start').addEventListener('click', () => {
 	ws.send('startSong')
 })
@@ -59,8 +80,23 @@ function playSong() {
 	);
 	bassSynthPart.loop = false
 
+	let drumNotes = [];
+	for(let i=0; i<136; i++) {
+		drumNotes.push('C0')
+	}
+
+	const drumSynthPart = new Tone.Sequence(
+		function (time, note) {
+			drumSynth.triggerAttackRelease(note, "10hz", time);
+		},
+		drumNotes,
+		"4n"
+	);
+	drumSynthPart.loop = false
+
 	// Setup the synth to be ready to play on beat 1
 	synthPart.start();
+	drumSynthPart.start()
 	//bassSynthPart.start();
 	Tone.Transport.start();
 }
