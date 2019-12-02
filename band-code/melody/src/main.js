@@ -16,6 +16,9 @@ ws.addEventListener('message', (event) => {
 	if(event.data === 'startPlaying'){
 		playSong()
 	}
+	if(event.data === 'stopPlaying') {
+		stopSong()
+	}
 })
 
 //create a synth and connect it to the master output (your speakers)
@@ -54,6 +57,10 @@ drumSynth.chain(gain)
 
 document.querySelector('#start').addEventListener('click', () => {
 	ws.send('startSong')
+})
+
+document.querySelector('#stop').addEventListener('click', () => {
+	stopSong()
 })
 
 function startDrum(){
@@ -112,7 +119,11 @@ function playSong() {
 	synthPart.start();
 	
 	//bassSynthPart.start();
-	
+}
+
+function stopSong() {
+	Tone.Transport.stop()
+	ws.send('songStopped')
 }
 
 let bassNotes = [
