@@ -19,9 +19,15 @@ ws.addEventListener('message', (event) => {
 })
 
 //create a synth and connect it to the master output (your speakers)
-let synth = new Tone.FMSynth({
-	volume: 0
-}).toMaster();
+let synth = new Tone.PolySynth(8, Tone.Synth).toMaster()
+
+var part = new Tone.Part(function (time, event) {
+	var chord = event.chord;
+	synth.triggerAttackRelease(chord.notes[0] + '3', event.duration, time);
+	synth.triggerAttackRelease(chord.notes.map(function (n) {
+		return n + '4';
+	}), event.duration, time);
+})
 
 let bassSynth = new Tone.Synth().toMaster()
 
