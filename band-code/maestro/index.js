@@ -28,6 +28,8 @@ socketServer.on('connection', (ws) => {
 				console.log('startPlaying!')
 				broadcast(socketServer, 'startPlaying')
 			}, 5000)
+		} else if (message === 'stopSong') {
+			broadcast(socketServer, 'stopPlaying')
 		}
 	})
 })

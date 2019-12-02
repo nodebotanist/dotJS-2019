@@ -16,6 +16,9 @@ myLaunchpad.on("press", pressInfo => {
 	if(pressInfo.button && pressInfo.button.note === 69) {
 		console.log('starting song')
 		maestroSocket.send('startSong')
+	} else if (pressInfo.button && pressInfo.button.note === 49) {
+		console.log('stopping song')
+		maestroSocket.send('stopSong')
 	}
 })
 
