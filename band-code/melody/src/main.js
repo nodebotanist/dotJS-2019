@@ -10,6 +10,9 @@ ws.addEventListener('open', () => {
 
 ws.addEventListener('message', (event) => {
 	console.log(`Recieved: ${event.data}`)
+	if(event.data === 'four') {
+		startDrum()
+	}
 	if(event.data === 'startPlaying'){
 		playSong()
 	}
@@ -47,6 +50,24 @@ document.querySelector('#start').addEventListener('click', () => {
 	ws.send('startSong')
 })
 
+function startDrum(){
+	let drumNotes = [];
+	for (let i = 0; i < 136; i++) {
+		drumNotes.push('C0')
+	}
+
+	const drumSynthPart = new Tone.Sequence(
+		function (time, note) {
+			drumSynth.triggerAttackRelease(note, "10hz", time);
+		},
+		drumNotes,
+		"4n"
+	);
+	drumSynthPart.loop = false
+	drumSynthPart.start()
+	Tone.Transport.start()
+}
+
 function playSong() {
 	Tone.context.resume();
 	Tone.Transport.bpm.value = 120 
@@ -80,25 +101,12 @@ function playSong() {
 	);
 	bassSynthPart.loop = false
 
-	let drumNotes = [];
-	for(let i=0; i<136; i++) {
-		drumNotes.push('C0')
-	}
-
-	const drumSynthPart = new Tone.Sequence(
-		function (time, note) {
-			drumSynth.triggerAttackRelease(note, "10hz", time);
-		},
-		drumNotes,
-		"4n"
-	);
-	drumSynthPart.loop = false
 
 	// Setup the synth to be ready to play on beat 1
 	synthPart.start();
-	drumSynthPart.start()
+	
 	//bassSynthPart.start();
-	Tone.Transport.start();
+	
 }
 
 let bassNotes = [
