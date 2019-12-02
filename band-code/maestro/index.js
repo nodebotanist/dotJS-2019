@@ -13,21 +13,29 @@ socketServer.on('connection', (ws) => {
 		if(message === `startSong`) {
 			console.log('startSong!')
 			setTimeout(() => {
-				ws.send('four')
+				broadcast(socketServer, 'four')
 			}, 1000)
 			setTimeout(() => {
-				ws.send('three')
+				broadcast(socketServer, 'three')
 			}, 2000)
 			setTimeout(() => {
-				ws.send('two')
+				broadcast(socketServer, 'two')
 			}, 3000)
 			setTimeout(() => {
-				ws.send('one')
+				broadcast(socketServer, 'one')
 			}, 4000)
 			setTimeout(() => {
 				console.log('startPlaying!')
-				ws.send('startPlaying')
+				broadcast(socketServer, 'startPlaying')
 			}, 5000)
 		}
 	})
 })
+
+function broadcast(ws, data){
+	ws.clients.forEach(function each(client) {
+		if (client !== ws && client.readyState === WebSocket.OPEN) {
+			client.send(data);
+		}
+	});
+}
