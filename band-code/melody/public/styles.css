@@ -1,0 +1,11 @@
+.chocobo {
+	max-width: 150px;
+}
+
+.button-row {
+	margin: 1em 0;
+}
+
+.button-row .col {
+	text-align: center;
+}

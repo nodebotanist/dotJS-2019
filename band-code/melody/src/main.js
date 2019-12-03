@@ -16,7 +16,7 @@ ws.addEventListener('message', (event) => {
 	if(event.data === 'startPlaying'){
 		playSong()
 	}
-	if(event.data === 'stopPlaying') {
+	if(event.data === 'stopPlaying ') {
 		stopSong()
 	}
 })
