@@ -63,13 +63,13 @@ setInterval(() => {
 }, 200)
 
 function noteToHue(note) {
-  const noteArray = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
-  let multiplier = noteArray.indexOf(note.charAt(0)) + 1
-  if(note.charAt(1) === 'b') {
-    multiplier -= 0.5
+  const noteArray = ['C', 'D', 'Db', 'E', 'F', 'Fb', 'G', 'Gb', 'A', 'Ab', 'B', 'Bb']
+  let noteIndex = noteArray.indexOf(note.charAt(0))
+  if (note.charAt(1) === 'b') {
+    noteIndex = noteArray.indexOf(note.substring(0, 2))
   }
-  console.log(multiplier)
-  let hue = (256 / 8) * multiplier
+  console.log(noteIndex)
+  let hue = (256 / 8) * noteIndex
   let currentColor = color({h: hue, s: 100, l:25})
   console.log(currentColor.red(), currentColor.green(), currentColor.blue())
   for(let i = 0; i < numPixels; i++) {
