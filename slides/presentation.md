@@ -1,3 +1,5 @@
+footer: @nodebotanist
+
 # *MIDI's not dead!*
 ## (And other musical ways to use JS)
 
@@ -18,7 +20,7 @@
 
 ---
 
-# 1. The *bass*
+# The *Bass*
 ## A lesson in MIDI, music theory, and project complexity
 
 ---
@@ -154,7 +156,7 @@ I wanted my bass to light up in a way that had something to do with what was bei
 
 # What That Looked Like
 
-[image[
+[image]
 
 ---
 
@@ -164,6 +166,10 @@ I wanted my bass to light up in a way that had something to do with what was bei
 * Maestro broadcasted 'StartSong'
 * All instruments now know the song is cued
 * Melody player started cue, followed by song
-* I played along
-* MIDI detection on the Pi + Fadecandy
+* I played along, and lights did their thing
+
+---
+
+# Node is *Ten Years Old*
+### And look what we can do with it.
 
