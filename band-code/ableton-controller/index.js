@@ -28,7 +28,7 @@ myLaunchpad.on("press", async pressInfo => {
 	} else if (pressInfo.button && pressInfo.button.note === 73) {
 		console.log('playing wark!')
 		playSound('wark')
-	} else if (pressInfo.button && pressInfo.button.note === 18) {
+	} else if (pressInfo.button && pressInfo.button.note === 74) {
 		console.log('playing fanfare!')
 		playSound('fanfare')
 	}
