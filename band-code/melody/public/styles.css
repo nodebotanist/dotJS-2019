@@ -6,6 +6,10 @@
 	margin: 1em 0;
 }
 
-.button-row .col {
+.button-row .col, .col {
 	text-align: center;
+}
+
+.qr {
+	max-width:  50%;
 }
