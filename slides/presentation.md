@@ -12,6 +12,7 @@ footer: @nodebotanist
 * Dev 🥑 @ Cloudflare
 * IoT author (JS on hardware)
 * Self-taught EE major
+* Agender (yes I know that's hard en Français)
 * Budding musician
 
 ---
@@ -44,7 +45,7 @@ I wanted my bass to light up in a way that had something to do with what was bei
 
 # What it Looks Like
 
-[image]
+![inline](./img/Bass.png)
 
 ---
 
@@ -92,12 +93,6 @@ I wanted my bass to light up in a way that had something to do with what was bei
 
 ---
 
-# What it Looks Like
-
-[image]
-
----
-
 # How it Works
 
 * Takes in messages from connected clients (instruments)
@@ -117,12 +112,6 @@ I wanted my bass to light up in a way that had something to do with what was bei
 * RGB LEDs
 * plays MP3s on queue
 * sends messages to the communications system
-
----
-
-# What it Looks Like
-
-[image]
 
 ---
 
@@ -150,13 +139,10 @@ I wanted my bass to light up in a way that had something to do with what was bei
 
 # Let's Play a Song
 
-![inline](./img/run.gif)
+![inline grid](./img/run.gif)
 
----
+![right](./img/qr.png)	
 
-# What That Looked Like
-
-[image]
 
 ---
 
@@ -170,6 +156,17 @@ I wanted my bass to light up in a way that had something to do with what was bei
 
 ---
 
+# What's the Point?
+
+---
+
 # Node is *Ten Years Old*
 ### And look what we can do with it.
 
+---
+
+# Thanks for listening
+
+![inline](./img/carl-sagan-youre-awesome.gif)
+
+![right](./img/qr.png)
