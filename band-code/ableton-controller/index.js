@@ -10,6 +10,7 @@ let wark
 
 maestroSocket.on('open', async () => {
 	wark = await Audio(`${__dirname}/sounds/wark.mp3`)
+	fanfare = await Audio(`${__dirname}/sounds/fanfare.mp3`)
 	console.log('maestro socket open')
 })
 
@@ -27,6 +28,9 @@ myLaunchpad.on("press", async pressInfo => {
 	} else if (pressInfo.button && pressInfo.button.note === 73) {
 		console.log('playing wark!')
 		playSound('wark')
+	} else if (pressInfo.button && pressInfo.button.note === 18) {
+		console.log('playing fanfare!')
+		playSound('fanfare')
 	}
 })
 
@@ -39,6 +43,11 @@ myLaunchpad.buttons.forEach((button) => {
 })
 
 async function playSound(name) {
-	await wark.volume(1)
-	await wark.play()
+	if(name === 'wark') {
+		await wark.volume(0.5)
+		await wark.play()
+	} else if(name === 'fanfare') {
+		await fanfare.volume(0.5)
+		await fanfare.play()
+	}
 }
